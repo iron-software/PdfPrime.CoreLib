@@ -593,7 +593,7 @@ def run_task_generate():
                 f"EXPORTED_FUNCTIONS={complete_functions_list}",
                 "-s", "ALLOW_TABLE_GROWTH",
                 "-s",
-                'EXPORTED_RUNTIME_METHODS=\'["ccall", "cwrap", "wasmExports", "HEAP8", "HEAP16", "HEAP32", "HEAPU8", "HEAPU16", "HEAPU32", "HEAPF32", "HEAPF64", "addFunction", "removeFunction"]\'',
+                'EXPORTED_RUNTIME_METHODS=\'["ccall", "cwrap", "wasmExports", "HEAP8", "HEAP16", "HEAP32", "HEAPU8", "HEAPU16", "HEAPU32", "HEAPF32", "HEAPF64", "addFunction", "removeFunction", "setValue"]\'',
                 "custom.cpp",
                 lib_file_out,
                 "-I{0}".format(include_dir),
