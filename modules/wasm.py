@@ -10,10 +10,15 @@ import modules.common as cm
 import modules.config as c
 import modules.patch as patch
 import modules.pdfium as p
+import modules.qpdf as q
 
 
 # -----------------------------------------------------------------------------
 def run_task_build_pdfium():
+    l.colored("Building QPDF for Emscripten...", l.YELLOW)
+    q.build_qpdf_wasm()
+    
+    l.colored("Building PDFium for Emscripten...", l.YELLOW)
     p.get_pdfium_by_target("emscripten")
 
 
@@ -507,6 +512,7 @@ def run_task_generate():
             node_dir = os.path.join(main_dir, "node")
             http_dir = os.path.join(relative_dir, config, "node")
             lib_file_out = os.path.join(lib_dir, "libpdfium.a")
+            lib_qpdf_path = os.path.join("build", "emscripten", "qpdf", "libqpdf.a")
 
             f.recreate_dir(gen_dir)
 
@@ -596,6 +602,7 @@ def run_task_generate():
                 'EXPORTED_RUNTIME_METHODS=\'["ccall", "cwrap", "wasmExports", "HEAP8", "HEAP16", "HEAP32", "HEAPU8", "HEAPU16", "HEAPU32", "HEAPF32", "HEAPF64", "addFunction", "removeFunction", "setValue"]\'',
                 "custom.cpp",
                 lib_file_out,
+                lib_qpdf_path,
                 "-I{0}".format(include_dir),
                 "-s",
                 "USE_ZLIB=1",
