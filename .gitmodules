@@ -1,0 +1,3 @@
+[submodule "external/qpdf"]
+	path = external/qpdf
+	url = https://github.com/iron-software/qpdf
